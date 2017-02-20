@@ -1,12 +1,12 @@
 class CreateFilms < ActiveRecord::Migration[5.0]
   def change
     create_table :films do |t|
-      t.string :title
+      t.string :director
       t.integer :episode_id
       t.text :opening_crawl
-      t.string :director
       t.string :producer
-      t.datetime :release_date
+      t.date :release_date
+      t.string :title
 
       t.timestamps
     end
