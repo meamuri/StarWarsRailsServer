@@ -1,0 +1,2 @@
+json.extract! vehicle, :id, :name,, :model,, :vehicle_class,, :manufacturer,, :length,, :cost_in_credits,, :crew,, :passengers,, :max_atmosphering_speed,, :cargo_capacity,, :consumables, :created_at, :updated_at
+json.url vehicle_url(vehicle, format: :json)
