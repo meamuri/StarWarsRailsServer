@@ -25,46 +25,55 @@ films['results'].each do |f|
   film.save
 end
 
+url = BASE_URL + 'planets/'
 
-json = RestClient.get BASE_URL + 'planets/'
-planets = JSON.parse json
-planets['results'].each do |p|
-  planet = Planet.new
-  planet.id = p['url'].split('/').last
-  planet.name = p['name']
-  planet.diameter = p['diameter']
-  planet.rotation_period = p['rotation_period']
-  planet.orbital_period = p['rotation_period']
-  planet.gravity = p['gravity']
-  planet.population = p['population']
-  planet.climate = p['climate']
-  planet.terrain = p['terrain']
-  planet.surface_water = p['surface_water']
-  planet.save
-  p['films'].each do |f|
-    tmp_film = Film.find f.split('/').last
-    tmp_film.planets << planet
+loop do
+
+  responce = RestClient.get url
+  hash = JSON.parse responce
+  planets = hash['results']
+
+  planets.each do |p|
+    planet = Planet.new
+    planet.id = p['url'].split('/').last
+    planet.name = p['name']
+    planet.diameter = p['diameter']
+    planet.rotation_period = p['rotation_period']
+    planet.orbital_period = p['rotation_period']
+    planet.gravity = p['gravity']
+    planet.population = p['population']
+    planet.climate = p['climate']
+    planet.terrain = p['terrain']
+    planet.surface_water = p['surface_water']
+    planet.save
+    p['films'].each do |f|
+      tmp_film = Film.find f.split('/').last
+      tmp_film.planets << planet
+    end
   end
+
+  url = hash['next']
+  break if url.nil?
 end
 
 
-json = RestClient.get BASE_URL + 'people/'
-people = JSON.parse json
-people['results'].each do |p|
-  person = Person.new
-  person.name=p['name']
-  person.birth_year=p['birth_year']
-  person.eye_color=p['eye_color']
-  person.gender=p['gender']
-  person.hair_color=p['hair_color']
-  person.height=p['height']
-  person.mass = p['mass']
-  person.skin_color=p['skin_color']
-  person.id = p['url'].split('/').last
+# json = RestClient.get BASE_URL + 'people/'
+# people = JSON.parse json
+# people['results'].each do |p|
+#   person = Person.new
+#   person.name=p['name']
+#   person.birth_year=p['birth_year']
+#   person.eye_color=p['eye_color']
+#   person.gender=p['gender']
+#   person.hair_color=p['hair_color']
+#   person.height=p['height']
+#   person.mass = p['mass']
+#   person.skin_color=p['skin_color']
+#   person.id = p['url'].split('/').last
   # puts p['films']
   # person.save
   # p['films'].each do |f|
   #   tmp_film = Film.find f.split('/').last
   #   tmp_film.people << person
   # end
-end
+# end
