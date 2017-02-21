@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220132908) do
+ActiveRecord::Schema.define(version: 20170221074244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170220132908) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "films_persons", id: false, force: :cascade do |t|
+  create_table "films_people", id: false, force: :cascade do |t|
     t.integer "film_id",   null: false
     t.integer "person_id", null: false
   end
@@ -66,6 +66,11 @@ ActiveRecord::Schema.define(version: 20170220132908) do
     t.index ["planet_id"], name: "index_people_on_planet_id", using: :btree
   end
 
+  create_table "people_species", id: false, force: :cascade do |t|
+    t.integer "species_id", null: false
+    t.integer "person_id",  null: false
+  end
+
   create_table "people_starships", id: false, force: :cascade do |t|
     t.integer "starship_id", null: false
     t.integer "person_id",   null: false
@@ -74,11 +79,6 @@ ActiveRecord::Schema.define(version: 20170220132908) do
   create_table "people_vehicles", id: false, force: :cascade do |t|
     t.integer "vehicle_id", null: false
     t.integer "person_id",  null: false
-  end
-
-  create_table "peoplre_species", id: false, force: :cascade do |t|
-    t.integer "species_id", null: false
-    t.integer "peoplre_id", null: false
   end
 
   create_table "planets", force: :cascade do |t|
