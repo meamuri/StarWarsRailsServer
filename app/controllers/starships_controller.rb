@@ -69,6 +69,6 @@ class StarshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def starship_params
-      params.require(:starship).permit(:name,, :model,, :starship_class,, :manufacturer,, :cost_in_credits,, :length,, :crew,, :passengers,, :max_atmosphering_speed, :hyperdrive_rating,, :MGLT,, :cargo_capacity,, :consumables)
+      params.require(:starship).permit(:name, :model, :starship_class, :manufacturer, :cost_in_credits, :length, :crew, :passengers, :max_atmosphering_speed, :hyperdrive_rating, :MGLT, :cargo_capacity, :consumables)
     end
 end

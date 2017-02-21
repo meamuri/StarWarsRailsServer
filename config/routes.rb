@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "StaticPages#index"
   resources :vehicles
   resources :starships
   resources :species
