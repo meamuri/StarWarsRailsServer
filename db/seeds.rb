@@ -93,23 +93,21 @@ loop do
   starships = hash['results']
   starships.each do |item|
     starship = Starship.create(
-                           id: parse_url_and_get_id(item['url']),
-                           name: item['name'],
-                           model: item['model'],
-                           starship_class: item['starship_class'],
-                           manufacturer: item['manufacturer'],
-                           cost_in_credits: item['cost_in_credits'],
-                           length: item['length'],
-                           crew: item['crew'],
-                           passengers: item['passengers'],
-                           max_atmosphering_speed: item['max_atmosphering_speed'],
-                           hyperdrive_rating: item['hyperdrive_rating'],
-                           MGLT: item['MGLT'],
-                           cargo_capacity: item['cargo_capacity'],
-                           consumables: item['consumables'],
-
+       id: parse_url_and_get_id(item['url']),
+       name: item['name'],
+       model: item['model'],
+       starship_class: item['starship_class'],
+       manufacturer: item['manufacturer'],
+       cost_in_credits: item['cost_in_credits'],
+       length: item['length'],
+       crew: item['crew'],
+       passengers: item['passengers'],
+       max_atmosphering_speed: item['max_atmosphering_speed'],
+       hyperdrive_rating: item['hyperdrive_rating'],
+       MGLT: item['MGLT'],
+       cargo_capacity: item['cargo_capacity'],
+       consumables: item['consumables'],
     )
-    starship.save
     item['films'].each do |f|
       tmp_film = Film.find f.split('/').last
       tmp_film.starships << starship
@@ -145,7 +143,6 @@ loop do
         consumables: item['consumables'],
         cargo_capacity: item['cargo_capacity']
     )
-    vehicle.save
     item['films'].each do |f|
       tmp_film = Film.find f.split('/').last
       tmp_film.vehicles << vehicle

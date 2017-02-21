@@ -31,7 +31,9 @@
         <td><%= species.hair_colors %></td>
         <td><%= species.skin_colors %></td>
         <td><%= species.language %></td>
-        <td><%= species.homeworld %></td>
+        <td><%=
+          species.planet.name if species.planet
+        %></td>
         <td><%= link_to 'Show', species %></td>
 
       </tr>
