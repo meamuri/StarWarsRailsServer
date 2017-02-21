@@ -47,7 +47,7 @@
 
 <p>
   <strong>Homeworld:</strong>
-  <%= @species.homeworld %>
+  <%= @species.planet.name if @species.planet %>
 </p>
 
 <% link_to 'Back', species_index_path %>
