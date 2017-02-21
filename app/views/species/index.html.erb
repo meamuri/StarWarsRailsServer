@@ -15,7 +15,7 @@
       <th>Skin colors</th>
       <th>Language</th>
       <th>Homeworld</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -33,8 +33,7 @@
         <td><%= species.language %></td>
         <td><%= species.homeworld %></td>
         <td><%= link_to 'Show', species %></td>
-        <td><%= link_to 'Edit', edit_species_path(species) %></td>
-        <td><%= link_to 'Destroy', species, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>
