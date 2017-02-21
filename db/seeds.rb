@@ -84,3 +84,117 @@ loop do
   url = hash['next']
   break if url.nil?
 end
+
+
+url = BASE_URL + 'starships/'
+loop do
+  response = RestClient.get url
+  hash = JSON.parse response
+  starships = hash['results']
+  starships.each do |item|
+    starship = Starship.create(
+                           id: parse_url_and_get_id(item['url']),
+                           name: item['name'],
+                           model: item['model'],
+                           starship_class: item['starship_class'],
+                           manufacturer: item['manufacturer'],
+                           cost_in_credits: item['cost_in_credits'],
+                           length: item['length'],
+                           crew: item['crew'],
+                           passengers: item['passengers'],
+                           max_atmosphering_speed: item['max_atmosphering_speed'],
+                           hyperdrive_rating: item['hyperdrive_rating'],
+                           MGLT: item['MGLT'],
+                           cargo_capacity: item['cargo_capacity'],
+                           consumables: item['consumables'],
+
+    )
+    starship.save
+    item['films'].each do |f|
+      tmp_film = Film.find f.split('/').last
+      tmp_film.starships << starship
+    end
+    item['pilots'].each do |p|
+      person = Person.find p.split('/').last
+      person.starships << starship
+    end
+  end
+
+  url = hash['next']
+  break if url.nil?
+end
+
+
+url = BASE_URL + 'vehicles/'
+loop do
+  response = RestClient.get url
+  hash = JSON.parse response
+  vehicles = hash['results']
+  vehicles.each do |item|
+    vehicle = Vehicle.create(
+        id: parse_url_and_get_id(item['url']),
+        vehicle_class: item['vehicle_class'],
+        passengers: item['passengers'],
+        name: item['name'],
+        model: item['model'],
+        max_atmosphering_speed: item['max_atmosphering_speed'],
+        manufacturer: item['manufacturer'],
+        length: item['length'],
+        crew: item['crew'],
+        cost_in_credits: item['cost_in_credits'],
+        consumables: item['consumables'],
+        cargo_capacity: item['cargo_capacity']
+    )
+    vehicle.save
+    item['films'].each do |f|
+      tmp_film = Film.find f.split('/').last
+      tmp_film.vehicles << vehicle
+    end
+    item['pilots'].each do |p|
+      person = Person.find p.split('/').last
+      person.vehicles << vehicle
+    end
+  end
+
+  url = hash['next']
+  break if url.nil?
+end
+
+
+url = BASE_URL + 'species/'
+loop do
+  response = RestClient.get url
+  hash = JSON.parse response
+  species = hash['results']
+  species.each do |item|
+    home = item['homeworld']
+    planet = home ? Planet.find(parse_url_and_get_id(home)) : nil
+    the_species = Species.create(
+        id: parse_url_and_get_id(item['url']),
+        average_height: item['average_height'],
+        average_lifespan: item['average_lifespan'],
+        classifiation: item['classifiation'],
+        designation: item['designation'],
+        eye_colors: item['eye_colors'],
+        hair_colors: item['hair_colors'],
+        language: item['language'],
+        name: item['name'],
+        skin_colors: item['skin_colors'],
+        planet_id: planet&.id
+    )
+
+    item['films'].each do |f|
+      tmp_film = Film.find f.split('/').last
+      tmp_film.species << the_species
+    end
+    item['people'].each do |p|
+      person = Person.find p.split('/').last
+      person.species << the_species
+    end
+
+    planet.species << the_species if planet
+  end
+
+  url = hash['next']
+  break if url.nil?
+end
