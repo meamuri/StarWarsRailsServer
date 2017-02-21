@@ -1,2 +1,0 @@
-json.extract! starship, :id, :name, :model, :starship_class, :manufacturer, :cost_in_credits, :length, :crew, :passengers, :max_atmosphering_speed, :hyperdrive_rating, :MGLT, :cargo_capacity, :consumables, :created_at, :updated_at
-json.url starship_url(starship, format: :json)

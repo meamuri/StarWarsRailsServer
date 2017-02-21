@@ -1,5 +1,5 @@
 class StarshipsController < ApplicationController
-  before_action :set_starship, only: [:show, :edit, :update, :destroy]
+  before_action :set_starship, only: [:show, ]
 
   # GET /starships
   # GET /starships.json

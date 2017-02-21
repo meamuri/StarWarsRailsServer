@@ -1,5 +1,5 @@
 class SpeciesController < ApplicationController
-  before_action :set_species, only: [:show, :edit, :update, :destroy]
+  before_action :set_species, only: [:show, ]
 
   # GET /species
   # GET /species.json
