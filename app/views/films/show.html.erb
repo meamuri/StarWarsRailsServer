@@ -12,7 +12,7 @@
 
 <p>
   <strong>Opening crawl:</strong>
-  <%= @film.opening_crawl %>
+  <%=h @film.opening_crawl.gsub(/\n/, '<br>').html_safe %>
 </p>
 
 <p>

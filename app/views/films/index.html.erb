@@ -1,31 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Films</h1>
+<div class="alert alert-info" role="alert">That is perfect film list</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Episode</th>
-      <th>Opening crawl</th>
-      <th>Director</th>
-      <th>Producer</th>
-      <th>Release date</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
+<div class="row">
 
-  <tbody>
-    <% @films.each do |film| %>
-      <tr>
-        <td><%= film.title %></td>
-        <td><%= film.episode_id %></td>
-        <td><%= film.opening_crawl %></td>
-        <td><%= film.director %></td>
-        <td><%= film.producer %></td>
-        <td><%= film.release_date %></td>
-        <td><%= link_to 'Show', film %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% @films.each do |film| %>
+  <div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+      <%= image_tag film.poster.url(:medium) %>
+      <div class="caption">
+        <h4 class="pull-right"> <%= film.episode_id %></h4>
+        <h4><%= link_to film.title, film %>
+        </h4>
+        <p> <%= film.opening_crawl[0..150] + '...' %> </p>
+      </div>
+
+    </div>
+  </div>
+  <% end%>
+
+</div>
+<!-- /.container -->
