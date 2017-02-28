@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228082216) do
+ActiveRecord::Schema.define(version: 20170228135850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,12 @@ ActiveRecord::Schema.define(version: 20170228082216) do
     t.index ["planet_id"], name: "index_species_on_planet_id", using: :btree
   end
 
+  create_table "starship_classes", force: :cascade do |t|
+    t.string   "class"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "starships", force: :cascade do |t|
     t.string   "MGLT"
     t.string   "cargo_capacity"
@@ -131,6 +137,8 @@ ActiveRecord::Schema.define(version: 20170228082216) do
     t.string   "starship_class"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "starship_class_id"
+    t.index ["starship_class_id"], name: "index_starships_on_starship_class_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -167,4 +175,5 @@ ActiveRecord::Schema.define(version: 20170228082216) do
     t.string   "model"
   end
 
+  add_foreign_key "starships", "starship_classes"
 end
