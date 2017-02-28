@@ -5,18 +5,18 @@
 <table>
   <thead>
     <tr>
-      <th>Name,</th>
-      <th>Model,</th>
-      <th>Starship class,</th>
-      <th>Manufacturer,</th>
-      <th>Cost in credits,</th>
-      <th>Length,</th>
-      <th>Crew,</th>
-      <th>Passengers,</th>
+      <th>Name</th>
+      <th>Model</th>
+      <th>Starship class</th>
+      <th>Manufacturer</th>
+      <th>Cost in credits</th>
+      <th>Length</th>
+      <th>Crew</th>
+      <th>Passengers</th>
       <th>Max atmosphering speed</th>
-      <th>Hyperdrive rating,</th>
-      <th>Mglt,</th>
-      <th>Cargo capacity,</th>
+      <th>Hyperdrive rating</th>
+      <th>Mglt</th>
+      <th>Cargo capacity</th>
       <th>Consumables</th>
       <th colspan="1"></th>
     </tr>
@@ -27,7 +27,7 @@
       <tr>
         <td><%= starship.name%></td>
         <td><%= starship.model%></td>
-        <td><%= starship.starship_class%></td>
+        <td><%= starship.starship_class.name%></td>
         <td><%= starship.manufacturer%></td>
         <td><%= starship.cost_in_credits%></td>
         <td><%= starship.length%></td>
