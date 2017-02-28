@@ -30,4 +30,6 @@
   <%= @film.release_date %>
 </p>
 
+<%= image_tag @film.poster.url %>
+<br>
 <%= link_to 'Back', films_path %>
