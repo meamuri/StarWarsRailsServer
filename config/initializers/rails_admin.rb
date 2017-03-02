@@ -11,6 +11,15 @@ RailsAdmin.config do |config|
   ## == Cancan ==
   config.authorize_with :cancan
 
+  config.model Planet do
+    exclude_fields :species, :created_at, :id, :updated_at, :people
+    configure :orbital_period do
+      label 'orbital_period'
+    end
+    configure :rotation_period do
+      label 'rotation_period'
+    end
+  end
   ## == Pundit ==
   # config.authorize_with :pundit
 
