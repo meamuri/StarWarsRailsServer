@@ -1,21 +1,20 @@
 <script type="text/javascript" charset="utf-8">
-    var URL = "http://swapi.co/api/people/1/";
-
-    elem = $('#a_ajax');
-
-    elem.onclick = $.ajax({
-        url: URL
-    })
-        .done(function(res) {
-            console.log(res);
+    $(document).on('click', '#a_ajax', function(){
+        $.ajax({
+            url: "http://swapi.co/api/people/1/"
         })
-        .fail(function(err) {
-            console.log('Error: ' + err.status);
-        });
+            .done(function(res) {
+                $('#p').text(res['name']);
+            })
+            .fail(function(err) {
+                console.log('Error: ' + err.status);
+            });
+
+    })
 </script>
 
 <div class="jumbotron">
-  <h1 id="h_ajax">Ajax me now!!</h1>
-  <p id="p_ajax">You can test ajax</p>
-  <p><a id="a_ajax" class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  <h1 id="h">Ajax me now!!</h1>
+  <p id="p">You can test ajax</p>
+  <p><a id="a_ajax" class="btn btn-primary btn-lg" role="button">Learn more</a></p>
 </div>
