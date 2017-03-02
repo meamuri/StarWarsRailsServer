@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
-  root "static_pages#index"
-  get 'about/', to: "static_pages#about"
+  root 'static_pages#index'
+  get 'about/', to: 'static_pages#about'
+  get 'test_ajax/', to: 'static_pages#test_ajax'
   resources :vehicles, only: [:index, :show]
   resources :starships, only: [:index, :show]
   resources :species, only: [:index, :show]

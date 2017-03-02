@@ -3,4 +3,8 @@ class StaticPagesController < ApplicationController
   end
   def about
   end
+
+  def test_ajax
+
+  end
 end

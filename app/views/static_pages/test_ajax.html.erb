@@ -1,0 +1,21 @@
+<script type="text/javascript" charset="utf-8">
+    var URL = "http://swapi.co/api/people/1/";
+
+    elem = $('#a_ajax');
+
+    elem.onclick = $.ajax({
+        url: URL
+    })
+        .done(function(res) {
+            console.log(res);
+        })
+        .fail(function(err) {
+            console.log('Error: ' + err.status);
+        });
+</script>
+
+<div class="jumbotron">
+  <h1 id="h_ajax">Ajax me now!!</h1>
+  <p id="p_ajax">You can test ajax</p>
+  <p><a id="a_ajax" class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div>
