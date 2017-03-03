@@ -4,6 +4,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
+    @films = Film.all.order(:episode_id).reverse_order
     @people = Person.all
   end
 
@@ -11,6 +12,14 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
   end
+
+  def people_ajax
+    params[:film].blank? ? @people = Person.all : @people = Film.find(params[:film].to_i).people
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
@@ -21,4 +30,5 @@ class PeopleController < ApplicationController
     def person_params
       params.require(:person).permit(:name, :birth_year, :eye_color, :gender, :hair_color, :height, :mass, :skin_color)
     end
+
 end

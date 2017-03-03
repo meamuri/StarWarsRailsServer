@@ -2,34 +2,25 @@
 
 <h1>People</h1>
 
-<table table-striped>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Birth year</th>
-      <th>Eye color</th>
-      <th>Gender</th>
-      <th>Hair color</th>
-      <th>Height</th>
-      <th>Mass</th>
-      <th>Skin color</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
+<ol class="breadcrumb">
+  <li class = "active"><a class="film_sorting" value="">ALL</a></li>
+  <% @films.each do |f| %>
+      <li><a class="film_sorting" value="<%= f.id %>"><%= f.title %></a></li>
+  <% end %>
+</ol>
 
-  <tbody>
-    <% @people.each do |person| %>
-      <tr>
-        <td><%= person.name %></td>
-        <td><%= person.birth_year %></td>
-        <td><%= person.eye_color %></td>
-        <td><%= person.gender %></td>
-        <td><%= person.hair_color %></td>
-        <td><%= person.height %></td>
-        <td><%= person.mass %></td>
-        <td><%= person.skin_color %></td>
-        <td><%= link_to 'Show', person %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="result_div">
+  <script>
+      $.ajax({
+          cache: false,
+          data: {
+              film: ''
+          },
+          url: "/people_ajax",
+          success: function (response) {
+              $('#result_div').html(response);
+          }
+      });
+  </script>
+</div>
+
