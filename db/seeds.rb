@@ -91,12 +91,21 @@ loop do
   response = RestClient.get url
   hash = JSON.parse response
   starships = hash['results']
+
+  require 'set'
+  names = Set.new
+  starships.each do |item|
+    names.add? item['starship_class'].split.map(&:capitalize).join(' ')
+  end
+  names.each do |name|
+    StarshipClass.create(name: name)
+  end
+
   starships.each do |item|
     starship = Starship.create(
        id: parse_url_and_get_id(item['url']),
        name: item['name'],
        model: item['model'],
-       starship_class: item['starship_class'],
        manufacturer: item['manufacturer'],
        cost_in_credits: item['cost_in_credits'],
        length: item['length'],
@@ -108,6 +117,7 @@ loop do
        cargo_capacity: item['cargo_capacity'],
        consumables: item['consumables'],
     )
+    StarshipClass.find_by_name(item['starship_class'].split.map(&:capitalize).join(' ')).starships << starship
     item['films'].each do |f|
       tmp_film = Film.find f.split('/').last
       tmp_film.starships << starship
