@@ -2,36 +2,17 @@
 
 <h1>Planets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Diameter</th>
-      <th>Rotation period</th>
-      <th>Orbital period</th>
-      <th>Gravity</th>
-      <th>Population</th>
-      <th>Climate</th>
-      <th>Terrain</th>
-      <th>Surface water</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
+<script>
+    $.ajax({
+        cache: false,
+        data: {
+            page: '1'
+        },
+        url: "/planets_ajax",
+        success: function (response) {
+            $('#planets_div').html(response);
+        }
+    });
+</script>
 
-  <tbody>
-    <% @planets.each do |planet| %>
-      <tr>
-        <td><%= planet.name %></td>
-        <td><%= planet.diameter %></td>
-        <td><%= planet.rotation_period %></td>
-        <td><%= planet.orbital_period %></td>
-        <td><%= planet.gravity %></td>
-        <td><%= planet.population %></td>
-        <td><%= planet.climate %></td>
-        <td><%= planet.terrain %></td>
-        <td><%= planet.surface_water %></td>
-        <td><%= link_to 'Show', planet %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="planets_div"></div>

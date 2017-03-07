@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).on 'click', '.planets_page', ->
+  $.ajax
+    cache: false
+    data: page: $(this).attr('value')
+    url: '/planets_ajax'
+    success: (response) ->
+      $('#planets_div').html response
+      return
+  return

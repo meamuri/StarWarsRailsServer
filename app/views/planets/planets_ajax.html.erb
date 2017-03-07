@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Diameter</th>
+    <th>Rotation period</th>
+    <th>Orbital period</th>
+    <th>Gravity</th>
+    <th>Population</th>
+    <th>Climate</th>
+    <th>Terrain</th>
+    <th>Surface water</th>
+    <th colspan="1"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @planets.each do |planet| %>
+      <tr>
+        <td><%= planet.name %></td>
+        <td><%= planet.diameter %></td>
+        <td><%= planet.rotation_period %></td>
+        <td><%= planet.orbital_period %></td>
+        <td><%= planet.gravity %></td>
+        <td><%= planet.population %></td>
+        <td><%= planet.climate %></td>
+        <td><%= planet.terrain %></td>
+        <td><%= planet.surface_water %></td>
+        <td><%= link_to 'Show', planet %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<ul class="pagination">
+  <% 1.upto(@pages) do |i| %>
+      <% if @page == i %>
+          <li class="active"><a style="cursor: pointer;"><%= i %></a></li>
+      <% else %>
+      <li><a class="planets_page" style="cursor: pointer;" value = "<%= i %>"><%= i %></a></li>
+          <% end %>
+  <% end %>
+</ul>
