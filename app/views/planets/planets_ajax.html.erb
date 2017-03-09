@@ -33,13 +33,19 @@
   <% end %>
   </tbody>
 </table>
-
+<hr>
+<span class="label label-success">Страница:</span>
+<br>
 <ul class="pagination">
   <% 1.upto(@pages) do |i| %>
       <% if @page == i %>
           <li class="active"><a style="cursor: pointer;"><%= i %></a></li>
       <% else %>
-      <li><a class="planets_page" style="cursor: pointer;" value = "<%= i %>"><%= i %></a></li>
+      <li><a class="planets_page" style="cursor: pointer;" value="<%= i %>"><%= i %></a></li>
           <% end %>
   <% end %>
 </ul>
+<br>
+<span class="label label-success">Планет на странице:</span>
+<br>
+<br>
