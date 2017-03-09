@@ -2,20 +2,6 @@
 
 <h1>Planets</h1>
 
-<script>
-    $.ajax({
-        cache: false,
-        data: {
-            page: '1',
-            count: 5
-        },
-        url: "/planets_ajax",
-        success: function (response) {
-            $('#planets_div').html(response);
-        }
-    });
-</script>
-
 <div id="planets_div"></div>
 
 <div class="form-group">
@@ -25,3 +11,7 @@
     <option value="25">25</option>
   </select>
 </div>
+
+<script>
+    getDataFromServer();
+</script>
