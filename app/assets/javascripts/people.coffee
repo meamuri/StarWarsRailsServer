@@ -1,5 +1,4 @@
 @getPeopleByFilm = ->
-  console.log 'film =' + $('#result_div').attr('value')
   $.ajax
     cache: false
     data:

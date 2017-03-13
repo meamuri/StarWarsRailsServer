@@ -9,6 +9,6 @@
     success: (response) ->
       $('#planets_div').html response
 
-$(document).on 'change', $('#count_of_planets_select'), @getDataFromServer
+$(document).on 'change', '#count_of_planets_select', @getDataFromServer
 $(document).on 'click', '.planets_page', @getDataFromServer
 
