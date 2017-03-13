@@ -1,3 +1,18 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+@getPeopleByFilm = ->
+  console.log 'film =' + $('#result_div').attr('value')
+  $.ajax
+    cache: false
+    data:
+      film: $('#result_div').attr('value')
+      order: $('#sort_people_param option:selected').attr('value')
+    url: '/people_ajax'
+    success: (response) ->
+      $('#result_div').html response
+
+
+$(document).on 'click', '.film_sorting', ->
+  nowWeShowFilmById = $(this).attr('value')
+  $('#result_div').attr('value', nowWeShowFilmById)
+  getPeopleByFilm()
+
+$(document).on 'change', '#sort_people_param', getPeopleByFilm

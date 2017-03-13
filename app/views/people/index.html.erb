@@ -2,25 +2,30 @@
 
 <h1>People</h1>
 
+<!--<div class="row">-->
 <ol class="breadcrumb">
   <li class = "active"><a class="film_sorting" value="">ALL</a></li>
   <% @films.each do |f| %>
       <li><a class="film_sorting" value="<%= f.id %>"><%= f.title %></a></li>
   <% end %>
 </ol>
+<!--</div>-->
 
-<div id="result_div">
-  <script>
-      $.ajax({
-          cache: false,
-          data: {
-              film: ''
-          },
-          url: "/people_ajax",
-          success: function (response) {
-              $('#result_div').html(response);
-          }
-      });
-  </script>
+<div id="result_div" value="">
+
 </div>
 
+<br>
+<div class="form-group">
+  <select id="sort_people_param" class="custom-select">
+    <option value="name">Name</option>
+    <option value="birth_year">BirthYear</option>
+    <option value="height">Height</option>
+    <option value="mass">Mass</option>
+  </select>
+</div>
+<br>
+
+<script>
+    getPeopleByFilm("");
+</script>
