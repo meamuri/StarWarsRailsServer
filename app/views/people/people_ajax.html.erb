@@ -18,7 +18,18 @@
   <% @people.each do |person| %>
       <tr>
         <td><%= person.name %></td>
-        <td><%= person.birth_year %></td>
+        <td>
+          <% if person.birth_year.blank? %>
+            <%= 'unknown' %>
+          <% else %>
+              <% if person.birth_year < 0 %>
+                <% person.birth_year = -1 * (person.birth_year + 1)%>
+                <%= person.birth_year.to_s + 'BBY' %>
+              <% else %>
+                <%= person.birth_year.to_s + 'ABY' %>
+              <% end %>
+          <% end %>
+        </td>
         <td><%= person.eye_color %></td>
         <td><%= person.gender %></td>
         <td><%= person.hair_color %></td>
