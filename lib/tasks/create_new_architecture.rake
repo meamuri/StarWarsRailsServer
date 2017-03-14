@@ -23,4 +23,22 @@ namespace :create_new_architecture do
     end
   end
 
+  desc 'delete special value -1 and set unknown as nil'
+  task specialValueToNil: :environment do
+    url = 'http://swapi.co/api/people/'
+    loop do
+      response = RestClient.get url
+      hash = JSON.parse response
+      people = hash['results']
+      people.each do |p|
+        person = Person.find p['url'].split('/').last
+        p['mass'] == 'unknown' ? person.mass = nil : person.mass = p['mass'].to_i
+        p['height'] == 'unknown' ? person.height = nil : person.height = p['height'].to_i
+        person.save
+      end
+      url = hash['next']
+      break if url.nil?
+    end
+  end
+
 end
