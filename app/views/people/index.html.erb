@@ -2,20 +2,19 @@
 
 <h1>People</h1>
 
-<!--<div class="row">-->
 <ol class="breadcrumb">
   <li class = "active"><a class="film_sorting" value="">ALL</a></li>
   <% @films.each do |f| %>
       <li><a class="film_sorting" value="<%= f.id %>"><%= f.title %></a></li>
   <% end %>
 </ol>
-<!--</div>-->
 
-<div id="result_div" value="">
+<div id="result_div" value=""></div>
 
+<div class="form-group">
+<span class="label label-success">Параметр сортировки:</span>
 </div>
 
-<br>
 <div class="form-group">
   <select id="sort_people_param" class="custom-select">
     <option value="name">Name</option>
@@ -24,7 +23,6 @@
     <option value="mass">Mass</option>
   </select>
 </div>
-<br>
 
 <script>
     getPeopleByFilm("");
