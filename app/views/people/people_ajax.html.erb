@@ -22,8 +22,8 @@
         <td><%= person.eye_color %></td>
         <td><%= person.gender %></td>
         <td><%= person.hair_color %></td>
-        <td><%= person.height %></td>
-        <td><%= person.mass %></td>
+        <td><%= person.height == -1 ? 'unknown' : person.height %></td>
+        <td><%= person.mass == -1 ? 'unknown' : person.mass%></td>
         <td><%= person.skin_color %></td>
         <td><%= link_to 'Show', person %></td>
       </tr>

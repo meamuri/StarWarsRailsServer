@@ -14,11 +14,10 @@ class PeopleController < ApplicationController
   end
 
   def people_ajax
-    params[:order].blank? ? order = 'name' : order = params[:order]
+    params[:order].blank? ? @order = 'name' : @order = params[:order]
     params[:film].blank? ?
-        @people = Person.order(order) :
-        @people = Film.find(params[:film].to_i).people.order(order)
-
+        @people = Person.order(@order) :
+        @people = Film.find(params[:film].to_i).people.order(@order)
     respond_to do |format|
       format.html { render :layout => false }
     end

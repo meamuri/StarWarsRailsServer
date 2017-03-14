@@ -10,4 +10,17 @@ namespace :create_new_architecture do
     end
   end
 
+  desc 'migrate birth year to correct int field'
+  task people_birth_year_change: :environment do
+    Person.all.each do |p|
+      if p.birth_year == 'unknown'
+        p.tmp_by = nil
+        next
+      end
+      p.tmp_by = p.birth_year.to_i
+      p.tmp_by = -1 * p.tmp_by - 1 if p.birth_year.include? 'BBY'
+      p.save
+    end
+  end
+
 end
