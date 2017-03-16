@@ -12,8 +12,7 @@ module RorBrothersapp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    #config.autoload_paths += ["#{Rails.root}/app/presenters"]
-    # config.autoload_paths << Rails.root.join('app','presenters')
+    # config.autoload_paths += %W(#{config.root}/extras) # old version
     config.autoload_paths << Rails.root.join('app', 'presenters')
   end
 end

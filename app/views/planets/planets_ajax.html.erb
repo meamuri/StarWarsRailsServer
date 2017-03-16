@@ -17,7 +17,7 @@
   </thead>
 
   <tbody>
-  <% @planets.each do |planet| %>
+  <% @presenter.planets.each do |planet| %>
       <tr>
         <td><%= planet.name %></td>
         <td><%= planet.diameter %></td>
@@ -38,8 +38,8 @@
 <span class="label label-success">Страница:</span>
 <br>
 <ul class="pagination">
-  <% 1.upto(@pages) do |i| %>
-      <% if @page == i %>
+  <% 1.upto(@presenter.pages) do |i| %>
+      <% if @presenter.page == i %>
           <li class="active"><a style="cursor: pointer;"><%= i %></a></li>
       <% else %>
       <li><a class="planets_page" style="cursor: pointer;" value="<%= i %>"><%= i %></a></li>

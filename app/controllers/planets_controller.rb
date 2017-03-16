@@ -13,11 +13,9 @@ class PlanetsController < ApplicationController
   end
 
   def planets_ajax
-    @count = !params[:count].blank? ? params[:count].to_i : 5
-    @page = params[:page] ? params[:page].to_i : 1
-    @planets = Planet.offset((@page - 1) * @count).limit(@count)
-    @pages = Planet.count / @count + (Planet.count % @count == 0 ? 0 : 1)
-
+    count = !params[:count].blank? ? params[:count].to_i : 5
+    page = params[:page] ? params[:page].to_i : 1
+    @presenter = PlanetsPresenter.new count, page
     respond_to do |format|
       format.html { render :layout => false }
     end

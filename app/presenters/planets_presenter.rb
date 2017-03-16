@@ -1,4 +1,4 @@
-class Planet::PlanetsAjaxPresenter < BasePresenter
+class PlanetsPresenter
   def initialize(count, page)
     @count = count
     @page = page
