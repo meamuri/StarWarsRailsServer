@@ -16,12 +16,12 @@ class PlanetsController < ApplicationController
     @count = !params[:count].blank? ? params[:count].to_i : 5
     @page = params[:page] ? params[:page].to_i : 1
     @planets = Planet.offset((@page - 1) * @count).limit(@count)
-    @pages = Planet.count / @count + (Planet.count % params[:count].to_i == 0 ? 0 : 1)
+    @pages = Planet.count / @count + (Planet.count % @count == 0 ? 0 : 1)
+
     respond_to do |format|
       format.html { render :layout => false }
     end
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
