@@ -1,5 +1,7 @@
 class Film < ApplicationRecord
   include PgSearch
+  multisearchable :against => [:title, :director, :producer]
+
   default_scope {order(episode_id: :desc)}
 
   has_and_belongs_to_many :people

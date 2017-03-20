@@ -1,4 +1,6 @@
 class Planet < ApplicationRecord
+  multisearchable :against => [:name, :terrain, :climante]
+
   include PgSearch
   default_scope {order(id: :desc)}
 
