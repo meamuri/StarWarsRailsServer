@@ -1,4 +1,5 @@
 class Planet < ApplicationRecord
+  include PgSearch
   default_scope {order(id: :desc)}
 
   has_many :people

@@ -1,4 +1,5 @@
 class Film < ApplicationRecord
+  include PgSearch
   default_scope {order(episode_id: :desc)}
 
   has_and_belongs_to_many :people
