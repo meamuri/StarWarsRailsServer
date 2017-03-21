@@ -1,7 +1,7 @@
 class Planet < ApplicationRecord
-  multisearchable :against => [:name, :terrain, :climante]
-
   include PgSearch
+  multisearchable :against => [:name, :terrain, :climate]
+
   default_scope {order(id: :desc)}
 
   has_many :people
